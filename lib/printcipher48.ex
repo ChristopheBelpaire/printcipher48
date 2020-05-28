@@ -1,4 +1,7 @@
 defmodule Printcipher48 do
+  @moduledoc """
+  Module to encrypt en decrypt a payload with printcipher48
+  """
   use Bitwise
 
   @substitution %{
@@ -23,6 +26,21 @@ defmodule Printcipher48 do
     [0, 1, 0] => [1, 1, 1]
   }
 
+  @doc """
+  Encrypt a plaintext of 6 bytes
+
+  Params :
+    - plaintext of 6 bytes
+    - key of 6 bytes
+    - permutation key of 4 bytes
+  Returns the encrypted payload of 6 bytes
+
+  ## Examples
+
+      iex> Printcipher48.encrypt(<<76, 132, 117, 85, 195, 91>>, <<194, 136, 149, 186, 50, 123>>, <<105, 210, 205, 182>>)
+      <<235, 74, 249, 94, 125, 55>>
+
+  """
   def encrypt(plaintext, key, permkey) do
     counter = [0, 0, 0, 0, 0, 0]
 
@@ -47,6 +65,20 @@ defmodule Printcipher48 do
     cyphertext
   end
 
+   @doc """
+  Decrypt a ciphertext of 6 bytes
+
+  Params :
+    - cyphertext of 6 bytes
+    - key of 6 bytes
+    - permutation key of 4 bytes
+  Returns the plaintext payload of 6 bytes
+
+  ## Examples
+      iex> Printcipher48.decrypt(<<235, 74, 249, 94, 125, 55>>, <<194, 136, 149, 186, 50, 123>>, <<105, 210, 205, 182>>)
+      <<76, 132, 117, 85, 195, 91>>
+
+  """
   def decrypt(cyphertext, key, permkey) do
     counter = [1, 0, 0, 1, 0, 0]
 

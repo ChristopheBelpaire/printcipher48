@@ -3,6 +3,7 @@
 Implementation of the printcipher48 crypto algorithm in elixir.
 
 https://www.iacr.org/archive/ches2010/62250016/62250016.pdf
+
 https://journals.sagepub.com/doi/pdf/10.1155/2014/389476
 
 ## Installation
