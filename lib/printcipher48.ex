@@ -142,7 +142,7 @@ defmodule Printcipher48 do
     {result, counter}
   end
 
-  def next_round_counter(counter) do
+  defp next_round_counter(counter) do
     t = rem(1 + Enum.at(counter, 5) + Enum.at(counter, 4), 2)
     counter = Enum.slice(counter, 0..4)
     [t] ++ counter
@@ -154,7 +154,7 @@ defmodule Printcipher48 do
     {result, counter}
   end
 
-  def reverse_next_round_counter(counter) do
+  defp reverse_next_round_counter(counter) do
     t = rem(1 + Enum.at(counter, 0) + Enum.at(counter, 5), 2)
     counter = Enum.slice(counter, 1..5)
     counter ++ [t]
